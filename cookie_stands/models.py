@@ -1,6 +1,7 @@
 import random
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.urls import reverse
 
 
 class CookieStand(models.Model):
@@ -16,6 +17,9 @@ class CookieStand(models.Model):
 
     def __str__(self):
         return self.location
+
+    def get_absolute_url(self):
+        return reverse('cookie_stand_detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
 
